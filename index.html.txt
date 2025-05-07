@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate Gaza</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1e1e2f;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      padding: 30px 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 10px 0 20px;
+    }
+
+    select, button {
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 1em;
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    select {
+      background-color: #444;
+      color: white;
+    }
+
+    button {
+      background-color: #e74c3c;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #c0392b;
+    }
+
+    .thank-you {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #00ff88;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+      p {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="donate-gaza">Donate Gaza</h1>
+    <p>ادعم أهل غزة الآن. اختر طريقة التبرع من القائمة:</p>
+
+    <select id="method">
+      <option value="vodafone">فودافون كاش</option>
+      <option value="instapay">إنستا باي</option>
+      <option value="sms">رسالة نصية</option>
+    </select>
+
+    <button onclick="donate()">تبرع الآن</button>
+
+    <div class="thank-you" id="thankYouMsg">
+      شكرًا لك على دعمك الكريم لغزة ❤️
+    </div>
+  </div>
+
+  <script>
+    function donate() {
+      const method = document.getElementById("method").value;
+      const number = "01069277557";
+
+      let url = "";
+      if (method === "vodafone") {
+        url = "tel:*9*" + number + "#"; // رمز التبرع لفودافون كاش
+      } else if (method === "instapay") {
+        url = "https://www.instapay.eg"; // استبدله برابط مباشر لو متاح
+      } else if (method === "sms") {
+        url = "sms:" + number + "?body=تبرع%20لغزة"; // فتح تطبيق الرسائل
+      }
+
+      window.location.href = url;
+
+      // عرض رسالة الشكر
+      document.getElementById("thankYouMsg").style.display = "block";
+    }
+  </script>
+</body>
+</html>
